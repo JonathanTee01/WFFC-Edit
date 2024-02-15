@@ -153,9 +153,22 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		m_camOrientation.y += m_camRotRate;
 	}
+	if (m_InputCommands.rotUp) 
+	{
+		m_camOrientation.x += m_camRotRate;
+		if (m_camOrientation.x > 70)
+			m_camOrientation.x = 70;
+	}
+	if (m_InputCommands.rotDown) 
+	{
+		m_camOrientation.x -= m_camRotRate;
+		if (m_camOrientation.x < -70)
+			m_camOrientation.x = -70;
+	}
 
 	//create look direction from Euler angles in m_camOrientation
 	m_camLookDirection.x = sin((m_camOrientation.y)*3.1415 / 180);
+	m_camLookDirection.y = sin((m_camOrientation.x)*3.1415 / 180);
 	m_camLookDirection.z = cos((m_camOrientation.y)*3.1415 / 180);
 	m_camLookDirection.Normalize();
 
@@ -178,6 +191,14 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_InputCommands.left)
 	{
 		m_camPosition -= m_camRight*m_movespeed;
+	}
+	if (m_InputCommands.rise)
+	{
+		m_camPosition.y += m_movespeed;
+	}
+	if (m_InputCommands.descend)
+	{
+		m_camPosition.y -= m_movespeed;
 	}
 
 	//update lookat point

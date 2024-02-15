@@ -312,6 +312,14 @@ void ToolMain::UpdateInput(MSG * msg)
 		//set some flag for the mouse button in inputcommands
 		break;
 
+	//case WM_RBUTTONDOWN:
+	//	m_toolInputCommands.mouseContol = true;
+	//	break;
+
+	//case WM_RBUTTONUP:
+	//	m_toolInputCommands.mouseContol = false;
+	//	break;
+
 	}
 	//here we update all the actual app functionality that we want.  This information will either be used int toolmain, or sent down to the renderer (Camera movement etc
 	//WASD movement
@@ -337,17 +345,40 @@ void ToolMain::UpdateInput(MSG * msg)
 		m_toolInputCommands.right = true;
 	}
 	else m_toolInputCommands.right = false;
-	//rotation
-	if (m_keyArray['E'])
+	
+	// Rise and descend
+	if (m_keyArray[' ']) 
 	{
-		m_toolInputCommands.rotRight = true;
+		m_toolInputCommands.rise = true;
 	}
-	else m_toolInputCommands.rotRight = false;
-	if (m_keyArray['Q'])
+	else m_toolInputCommands.rise = false;
+	if (m_keyArray[17])		// Ctrl
+	{
+		m_toolInputCommands.descend = true;
+	}
+	else m_toolInputCommands.descend = false;
+
+	//rotation
+	if (m_keyArray[37])		// Left arrow key
 	{
 		m_toolInputCommands.rotLeft = true;
 	}
 	else m_toolInputCommands.rotLeft = false;
+	if (m_keyArray[39])		// Right arrow key
+	{
+		m_toolInputCommands.rotRight = true;
+	}
+	else m_toolInputCommands.rotRight = false;
+	if (m_keyArray[38])		// Up arrow key
+	{
+		m_toolInputCommands.rotUp = true;
+	}
+	else m_toolInputCommands.rotUp = false;
+	if (m_keyArray[40])		// Down arrow key
+	{
+		m_toolInputCommands.rotDown = true;
+	}
+	else m_toolInputCommands.rotDown = false;
 
 	//WASD
 }

@@ -8,4 +8,9 @@ struct InputCommands
 	bool left;
 	bool rotRight;
 	bool rotLeft;
+	bool rotUp;
+	bool rotDown;
+	bool rise;
+	bool descend;
+	//bool mouseContol;
 };
